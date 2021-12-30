@@ -1,0 +1,14 @@
+{
+    "name": "HSM Sample",
+    "description": "This Rest API returns a valid response for Salesforce Bring Your Own Key (BYOK) Cache-Only",
+    "env": {
+        "BYOK_CERT": {
+            "description": "BYOK Certificate (Public key)",
+            "value":""
+        },
+        "KEY_MATERIAL": {
+            "description": "Generated key material",
+            "value":""
+        }
+    }
+}

@@ -1,0 +1,75 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This Rest API returns a valid response for Salesforce Bring Your Own Key (BYOK) Cache-Only",
+    "version": "1.0.0",
+    "title": "KMS Wrapper",
+    "contact": {
+      "email": "baslu93@live.it"
+    }
+  },
+  "host": "ksm-wrapper.herokuapp.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "key",
+      "description": "Everything about your Wrapped Keys"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/keys/{kid}": {
+      "get": {
+        "tags": [
+          "key"
+        ],
+        "summary": "Get wrapped key material by KID",
+        "description": "Returns a single wrapped key material",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "kid",
+            "in": "path",
+            "description": "ID of wrapped key material to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/WrappedKey"
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "503": {
+            "description": "Free app running time quota exhausted"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "WrappedKey": {
+      "type": "object",
+      "properties": {
+        "kid": {
+          "type": "string",
+          "example": "7fd41960-6976-11ec-90d6"
+        },
+        "jwe": {
+          "type": "string",
+          "example": "eyJhbGciOiJSU0EtT0FFUCIsImVuYyI6IkEyNTZHQ00iLCJraWQiOiI3ZmQ0MTk2MC02OTc2LTExZWMtOTBkNiJ9..."
+        }
+      }
+    }
+  }
+}
